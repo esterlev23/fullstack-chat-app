@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    container_name: server
+    volumes:
+      - ./backend:/app
+      - logs:/var/log
+    ports:
+      - "8080:80"
+    tty: true
+
+  client:
+    image: node:20.15
+    container_name: client
+    ports:
+      - "5173:5173"
+    tty: true
+    volumes:
+      - ./frontend:/app
+      
+volumes:
+  logs:
+    name: logs
+    driver: local
+    driver_opts:
+      type: none
+      device: "${LOGS}"
+      o: bind
