@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from .models import HealthResponse
+from .models.health import HealthResponse
 
 app = FastAPI()
 
