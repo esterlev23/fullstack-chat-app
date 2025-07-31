@@ -1,13 +1,9 @@
 from fastapi import FastAPI
 
+from .models import HealthResponse
+
 app = FastAPI()
 
-
-@app.get("/")
-def read_root():
-    return {"Hello": "Worlddd"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/api/health", response_model=HealthResponse)
+async def health_check():
+    return HealthResponse(status="Ok")

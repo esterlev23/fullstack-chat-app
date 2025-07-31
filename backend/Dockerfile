@@ -8,10 +8,11 @@ ENV REQUESTS_CA_BUNDLE=/etc/ca-bundle.crt
 ENV SSL_CERT_FILE=/etc/ca-bundle.crt
 # --- END NETFREE CERT INTSALL ---
 
-ENV MODULE_NAME=app.main
 
 COPY . /app
 
 WORKDIR /app
 
 RUN pip install --no-cache-dir --upgrade .
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]

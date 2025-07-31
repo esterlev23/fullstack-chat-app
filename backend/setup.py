@@ -7,6 +7,8 @@ setuptools.setup(
     install_requires=[
         "openai",
         "fastapi",
+        "pydantic",
+        "ruff"
     ],
     extras_require={
         "server": ["fastapi"],
